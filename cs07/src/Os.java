@@ -13,9 +13,8 @@ public class Os {
     }
 
     // -> 스케줄러에 전달
-    public void passProcesses() {
+    public void passProcessToScheduler() {
         Scheduler scheduler = new Scheduler(readyQueue);
-        scheduler.roundRobin();
+        scheduler.scheduleProcess();
     }
-
 }

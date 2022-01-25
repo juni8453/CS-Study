@@ -1,8 +1,41 @@
-public class MyThread extends Thread {
+class MyThread implements Runnable {
+	volatile boolean suspended = false;
+	volatile boolean stopped = false;
+
+	Thread th;
+
+	MyThread() {
+		this.th = new Thread(this);
+	}
+
+	void start() {
+		th.start();
+	}
+
+	void stop() {
+		stopped = true;
+	}
+
+	void suspend() {
+		suspended = true;
+	}
+
+	void resume() {
+		suspended = false;
+	}
+
 	@Override
 	public void run() {
-		//todo 뭘 할지
-		// 의미 없는 짓 반복
-
+		while (!stopped) {
+			if (!suspended) {
+				int i = 0;
+				while(true) {
+					if (i % 600000000 == 0) {
+						System.out.println(i);
+					}
+					i++;
+				}
+			}
+		}
 	}
 }

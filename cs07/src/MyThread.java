@@ -26,15 +26,14 @@ class MyThread implements Runnable {
 
 	@Override
 	public void run() {
+		int i = 0;
+
 		while (!stopped) {
 			if (!suspended) {
-				int i = 0;
-				while(true) {
-					if (i % 600000000 == 0) {
-						System.out.println(i);
-					}
-					i++;
+				if (i % 600000000 == 0) {
+					System.out.println(i);
 				}
+				i++;
 			}
 		}
 	}
